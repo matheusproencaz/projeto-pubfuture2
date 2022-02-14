@@ -1,0 +1,27 @@
+#footerContainer {
+  background: -webkit-gradient(linear, left top, right top, from(#6befd2), to(#00719e));
+  background: linear-gradient(90deg, #6befd2, #00719e);
+  height: 4vh;
+  margin: 0;
+  padding: 0;
+}
+
+#footerContainer svg, #footerContainer a {
+  text-decoration: none;
+  color: #003153;
+}
+
+#divFooter {
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#divFooter:hover svg, #divFooter:hover a {
+  color: #6befd2;
+}
+/*# sourceMappingURL=styles.css.map */

@@ -1,4 +1,4 @@
-#formContas {
+#loginContainer {
   width: 100vw;
   height: 96vh;
   background-color: #f3f3f3;
@@ -13,50 +13,46 @@
           align-items: center;
 }
 
-#formContas a {
+#loginContainer a {
   margin-top: 0px;
   text-decoration: none;
   font-size: 16px;
-  color: #00719e;
-  -webkit-transition: all 200ms;
-  transition: all 200ms;
+  float: end;
 }
 
-#formContas a:hover {
-  color: #6befd2;
+#loginContainer .col {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
-#formContas .btn {
+#loginContainer .btn {
   background-color: #00719e;
   border: 0;
   width: 100%;
 }
 
-#formContas .btn:hover {
+#loginContainer .btn:hover {
   background-color: #003153;
 }
 
-#formContas .img-fluid {
+#loginContainer .img-fluid {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   background-color: #00719e;
 }
 
-#formContas .container {
+#loginContainer .container {
   background-color: #FFF;
   border-radius: 20px;
   width: 500px;
-  height: 640px;
+  height: 400px;
   margin: 0;
   padding: 0;
 }
 
-#formContas .btns {
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
-#formContas .row {
+#loginContainer .row {
   margin: 0;
   padding: 15px;
   -webkit-box-pack: center;
@@ -64,12 +60,12 @@
           justify-content: center;
 }
 
-#formContas .row img {
+#loginContainer .row img {
   height: 150px;
   width: auto;
 }
 
-#formContas .label-before, #formContas .field input:valid + label::before, #formContas .field input:focus + label::before {
+#loginContainer .label-before, #loginContainer .field input:valid + label::before, #loginContainer .field input:focus + label::before {
   line-height: 20px;
   font-size: 14px;
   font-weight: 700;
@@ -77,12 +73,12 @@
   padding: 0;
 }
 
-#formContas .field {
+#loginContainer .field {
   position: relative;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
-#formContas .field label::before {
+#loginContainer .field label::before {
   content: attr(title);
   position: absolute;
   top: 15px;
@@ -94,7 +90,7 @@
   transition: 200ms all;
 }
 
-#formContas .field input {
+#loginContainer .field input {
   width: 100%;
   line-height: 40px;
   padding: 0;
@@ -111,15 +107,15 @@
   transition: border-color 0.2s;
 }
 
-#formContas .field input:focus {
+#loginContainer .field input:focus {
   border-bottom: 2px solid #00719e;
 }
 
-#formContas .field input:valid + label::before {
+#loginContainer .field input:valid + label::before {
   content: attr(data-title);
 }
 
-#formContas .field input:focus + label::before {
+#loginContainer .field input:focus + label::before {
   color: #00719e;
 }
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=styles.css.map */

@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap/js/dist/dropdown'
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 function Navbar(){
 
@@ -41,8 +42,12 @@ function Navbar(){
                             </li>
                         </ul>
                         <div id="btns">
-                            <button type="button" className="btn">Login</button> 
-                            <button type="button" className="btn">Criar conta</button>
+                            <Link to={`/login`}>
+                                <div className="btn btn-primary">Login</div>
+                            </Link>
+                            <Link to={`form`}>
+                                <div className="btn btn-primary">Criar conta</div>
+                            </Link>
                         </div>
                     </div>
                 </div>

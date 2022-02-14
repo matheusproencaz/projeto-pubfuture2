@@ -1,9 +1,4 @@
 @import './components/Estilos/styles.scss';
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400;700&display=swap');
-
-body{
-    font-family: 'Ubuntu',sans-serif;
-}
 
 #container-apresentation {
 
@@ -11,7 +6,6 @@ body{
     margin-top: 68px;
     background: radial-gradient(circle, $gradientColor2 20%, $gradientColor1 100%);
     padding: 150px;
-    
     }
 
     h1{
@@ -40,19 +34,5 @@ body{
         height: 3px;
         background: linear-gradient(90deg, $primaryColor, $thirdColor);
         position: absolute;
-    }
-}
-
-footer{
-    background-color: $gray;
-    height: 30px;
-    flex: none;
-    a{
-        text-decoration: none;
-        color: $fourthColor;
-
-        &:hover{
-            color: $secondaryColor;
-        }
     }
 }
