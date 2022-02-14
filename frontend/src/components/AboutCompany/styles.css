@@ -1,0 +1,33 @@
+#container-company .col-6 {
+  background: radial-gradient(circle, #251738 37%, #3d2d54 100%);
+  padding: 150px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#container-company .col-6 .fotoPub {
+  height: 200px;
+  width: auto;
+  margin-left: 10px;
+}
+
+#container-company .col-6 img {
+  width: 389px;
+}
+
+#container-company .col-6 #seloProway {
+  height: 200px;
+  width: auto;
+  margin-left: 50px;
+}
+
+#container-company .col-6 #aExecutora {
+  margin-bottom: 10px;
+}
+
+#container-company .col-6 p {
+  margin-top: 20px;
+  margin-left: 25px;
+}
+/*# sourceMappingURL=styles.css.map */

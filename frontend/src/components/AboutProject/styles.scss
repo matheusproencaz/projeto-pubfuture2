@@ -1,0 +1,37 @@
+@import '../Estilos/styles.scss';
+
+#AboutProject{
+
+    #p-title{
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+    .row{
+        background-color: $gray;
+        border: 3px solid $primaryColor;
+        border-top: 0;
+    }
+
+    #row-dentro{
+        border: 0;
+    }
+
+    margin-bottom: 0;
+    margin-top: 0;
+
+    #container-desafio{
+        background-color: $fourthColor;
+        height: 87px;
+        font-display: flex;
+    }
+
+    img{
+        height: 25px;
+    }
+
+    p, li{
+        color: $secondaryColor;
+        font-size: 24px;
+    }
+}

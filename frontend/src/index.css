@@ -1,19 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
-
-:root {
-  --color-primary: #4D41C0;
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;400;700&display=swap");
+body {
+  font-family: 'Ubuntu',sans-serif;
 }
 
-* {
-    box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
+#container-apresentation .row {
+  margin-top: 68px;
+  background: radial-gradient(circle, #3d2d54 20%, #251738 100%);
+  padding: 150px;
 }
 
-html, body {
-    background-color: #E5E5E5;
+#container-apresentation h1 {
+  font-size: 35px;
+  font-weight: bold;
+  color: #FFF;
 }
 
-a, a:hover {
+#container-apresentation p {
+  font-weight: 400;
+}
+
+#container-apresentation::before {
+  content: "";
+  margin-left: -12px;
+  width: 100%;
+  height: 2px;
+  background: -webkit-gradient(linear, left top, right top, from(#6befd2), to(#eceeb3));
+  background: linear-gradient(90deg, #6befd2, #eceeb3);
+  position: absolute;
+}
+
+#container-apresentation::after {
+  content: "";
+  margin-left: -12px;
+  width: 100%;
+  height: 3px;
+  background: -webkit-gradient(linear, left top, right top, from(#6befd2), to(#eceeb3));
+  background: linear-gradient(90deg, #6befd2, #eceeb3);
+  position: absolute;
+}
+
+footer {
+  background-color: #f3f3f3;
+  height: 30px;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+}
+
+footer a {
   text-decoration: none;
-  color: unset;
+  color: #003153;
 }
+
+footer a:hover {
+  color: #00719e;
+}
+/*# sourceMappingURL=index.css.map */

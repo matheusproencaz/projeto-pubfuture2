@@ -1,0 +1,73 @@
+@import '../Estilos/styles.scss';
+
+.navbar{
+    margin: 0;
+    padding: 0;
+}
+
+#nav-container{
+    padding-bottom: 0px;
+    background: linear-gradient(180deg, $secondaryColor, $fourthColor);
+    border-bottom: 1px solid $primaryColor;
+}
+
+#logo{
+    width: 200px;
+    padding: 5px;
+    margin-right: 20px;
+}
+
+#navbar-items a, p{
+    color: $white;
+}
+
+#btns .btn{
+    color: $white;
+    border-radius: 0;
+    margin: 15px;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid $white;
+    transition: 200ms;
+
+
+    &:hover{
+        color: $primaryColor;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 1px solid $primaryColor;
+    }
+}
+
+#navbar-links a:active{
+    border-bottom: 1px solid $primaryColor;
+}
+
+#navbar-links a:hover{
+    border-bottom: 1px solid $primaryColor;
+}
+
+.dropdown-menu{
+    border: 0;
+    border-bottom: 1px solid $primaryColor;
+    background-color: $fourthColor;
+    border-radius: 0;
+}
+
+.dropdown-item{
+    border: 0;
+    color: $thirdColor;    
+    &:hover{
+        background-color: $secondaryColor;
+    }
+
+}
+
+@media (max-width: 991px) {
+    
+    #nav-container{
+        padding-top: 9px;
+        padding-bottom: 9px;
+
+    }
+}

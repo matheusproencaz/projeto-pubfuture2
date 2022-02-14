@@ -1,0 +1,45 @@
+#slider{
+    margin: 0;
+    padding: 0;
+
+    img{
+        width: 582px;
+        height: auto;
+    }
+
+    .carousel-item{
+
+        &:hover{
+            
+            #comentario{
+
+                transition: 1s all;
+                opacity: 1;
+                
+                h5{
+                    font-size: 50px;
+                    font-weight: bold;
+                }
+
+                p{
+                    font-size: 30px;
+                    
+                }
+            }
+        
+            img{
+                transition: 1s all;
+                background-color: #fff;
+                opacity: .4;
+             }
+        }  
+
+        #comentario{
+            opacity: 0;
+            
+            h5, p{
+                color: black;
+            }
+        }
+    }
+}

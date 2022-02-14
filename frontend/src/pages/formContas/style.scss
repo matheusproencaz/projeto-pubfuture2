@@ -1,0 +1,60 @@
+$primarygradient: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(219,49,208,1) 37%, rgba(0,212,255,1),100%);
+$gray: #000;
+
+body {
+    font-family: sans-serif;
+}
+
+.label-before {
+	line-height: 20px;
+	font-size: 12px;
+	font-weight: 700;
+	top: -10px;
+	padding: 0;
+}
+
+.container {
+	width: 80%;
+	margin: 30px 10%;
+}
+
+.field {
+	position: relative;
+	margin-bottom: px;
+	label::before {
+		content: attr(title);
+		position: absolute;
+		top: 0;
+		left: 0;
+		line-height: 40px;
+		font-size: 14px;
+		font-weight: 700;
+		color: $gray;
+		transition: 200ms all;
+	}
+	input {
+    width: 100%;
+    line-height: 40px;
+    padding: 0;
+    background-color: transparent;
+	box-sizing: border-box;
+    font-size: 14px;
+    color: $gray;
+	border: 0;
+	border-bottom: 2px solid $gray;
+	outline: 0;
+	transition:  border-color 0.2s;
+
+		&:focus {
+			border-bottom: 2px solid red;
+		}
+		&:valid + label::before {
+			@extend .label-before; 
+			content: attr(data-title);
+		}
+		&:focus + label::before {
+			@extend .label-before;
+			color: red;
+		}
+	}
+}
