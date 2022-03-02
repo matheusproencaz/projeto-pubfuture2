@@ -1,0 +1,46 @@
+.label-before, input:focus + label::before, input:valid + label::before {
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  top: -10px;
+  padding: 0;
+}
+
+.field {
+  position: relative;
+  margin-bottom: 15px;
+}
+.field label::before {
+  content: attr(title);
+  position: absolute;
+  top: 15px;
+  left: 12.5px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #aaaaaa;
+  transition: 200ms all;
+}
+
+input {
+  width: 100%;
+  line-height: 40px;
+  padding: 0;
+  margin-bottom: 0;
+  background-color: transparent;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #aaaaaa;
+  border: 0;
+  border-bottom: 2px solid #aaaaaa;
+  outline: 0;
+  transition: border-color 0.2s;
+}
+input:focus {
+  border-bottom: 2px solid #00719e;
+}
+input:valid + label::before {
+  content: attr(data-title);
+}
+input:focus + label::before {
+  color: #00719e;
+}/*# sourceMappingURL=styles.css.map */

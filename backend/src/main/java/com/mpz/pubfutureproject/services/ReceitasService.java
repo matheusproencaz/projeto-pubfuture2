@@ -61,5 +61,6 @@ public class ReceitasService {
 		entity.setDataRecEsperado(obj.getDataRecEsperado());
 		entity.setDescricao(obj.getDescricao());
 		entity.setTipoReceita(obj.getTipoReceita());
+		entity.setNomeUsuario(obj.getNomeUsuario());
 	}
 }

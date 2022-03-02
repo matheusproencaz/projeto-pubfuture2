@@ -1,4 +1,4 @@
-@import '../../components/Estilos/styles.scss';
+@import '../../Estilos/styles.scss';
 
 #loginContainer{
     width: 100vw;
@@ -64,46 +64,5 @@
 		font-weight: 700;
 		top: -10px;
 		padding: 0;
-	}
-
-	.field {
-		position: relative;
-		margin-bottom: 15px;
-		label::before {
-			content: attr(title);
-			position: absolute;
-			top: 15px;
-			left: 12.5px;
-			font-size: 16px;
-			font-weight: 700;
-			color: $gray2;
-			transition: 200ms all;
-		}
-		input {
-		width: 100%;
-		line-height: 40px;
-		padding: 0;
-		margin-bottom: 0;
-		background-color: transparent;
-		box-sizing: border-box;
-		font-size: 14px;
-		color: $gray2;
-		border: 0;
-		border-bottom: 2px solid $gray2;
-		outline: 0;
-		transition: border-color 0.2s;
-
-			&:focus {
-				border-bottom: 2px solid $secondaryColor;
-			}
-			&:valid + label::before {
-				@extend .label-before; 
-				content: attr(data-title);
-			}
-			&:focus + label::before {
-				@extend .label-before;
-				color: $secondaryColor;
-			}
-		}
 	}
 }

@@ -1,0 +1,14 @@
+@import '../../Estilos/styles.scss';
+
+#listaContas{
+    display: flex;
+  
+    .content{
+        height: 100%;
+        width: 100%;
+        
+        background-color: $thirdColor;
+    }
+
+
+}

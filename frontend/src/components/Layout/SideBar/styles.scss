@@ -1,0 +1,54 @@
+@import '../../../Estilos/styles.scss';
+
+#sidebar{
+
+    display: flex;
+    padding: 0;
+    margin: 0;
+    height: 96vh;
+    width: 280px;
+
+
+    .d-flex{
+        width: 280px;
+    }
+
+    .spanText{
+        font-size: 24px;
+        margin: 0 0 0 15px;
+    }
+
+    .svg-title{
+        font-size: 28px;
+        margin: 0 0 0 15px;
+    }
+
+    .svg-span{
+        font-size: 24px;
+        margin: 0 15px 0 0px;
+    }
+
+    .nav-item{
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-link{
+        margin-bottom: 15px;
+        
+        &:hover{
+            background-color: $gray3;
+        } 
+    }
+
+    .active{
+        background-color: $fourthColor;
+        width: 100%;
+        transition: 200ms;
+
+        &:hover{
+            background-color: $secondaryColor;
+        }
+    }
+
+}

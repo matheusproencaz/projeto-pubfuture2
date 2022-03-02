@@ -30,6 +30,14 @@ public class ContasService {
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
+	public Contas findByNomeUsuario(String nomeUsuario) {
+		Contas obj = repository.findByNomeUsuario(nomeUsuario);
+		if(obj == null) {
+			throw new ResourceNotFoundException(nomeUsuario);
+		}
+		return obj;
+	}
+	
 	public Contas insert(Contas obj) {
 		return repository.save(obj);
 	}

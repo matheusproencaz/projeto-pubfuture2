@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "frontend"
+		},
+		{
+			"path": "..\\Spring-React-Workshop\\Projetos\\dsmovie\\frontend"
+		},
+		{
+			"path": "..\\..\\..\\HTML-CSS\\Curso Bootstrap\\Curso 2"
+		},
+		{
+			"path": "..\\..\\..\\HTML-CSS\\Projetos Botões\\Youtube-Tutorials\\Efeitos Hover"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Efeitos Hover"
+	}
+}

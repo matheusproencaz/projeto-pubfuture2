@@ -1,0 +1,41 @@
+#AboutProject {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+#AboutProject h2 {
+  color: #6befd2;
+  font-weight: 700;
+  text-shadow: #000 2px 2px 2px;
+}
+#AboutProject h2:before {
+  width: 120px;
+  margin-top: 38px;
+  border-bottom: 2px solid #6befd2;
+  content: "";
+  position: absolute;
+  box-shadow: #000 2px 2px 2px;
+}
+#AboutProject #p-title {
+  font-weight: bold;
+  font-size: 30px;
+}
+#AboutProject .row {
+  background-color: #f3f3f3;
+  border: 3px solid #6befd2;
+  border-top: 0;
+}
+#AboutProject #row-dentro {
+  border: 0;
+}
+#AboutProject #container-desafio {
+  background-color: #003153;
+  height: 87px;
+  font-display: flex;
+}
+#AboutProject img {
+  height: 25px;
+}
+#AboutProject p, #AboutProject li {
+  color: #00719e;
+  font-size: 24px;
+}/*# sourceMappingURL=styles.css.map */

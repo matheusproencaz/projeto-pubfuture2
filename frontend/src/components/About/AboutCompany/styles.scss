@@ -1,0 +1,36 @@
+@import '../../../Estilos/styles.scss';
+
+#container-company{
+
+    .col-6{
+        background: radial-gradient(circle, $gradientColor1 37%, $gradientColor2 100%);
+        padding: 150px;
+        align-items: center;
+
+        .fotoPub{
+            height: 200px;
+            width: auto;
+            margin-left: 10px;
+        }
+
+        img{
+            width: 389px;
+
+        }
+
+        #seloProway{
+            height: 200px;
+            width: auto;
+            margin-left: 50px;
+        }
+
+        #aExecutora{
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-top: 20px;
+            margin-left: 25px;
+        }
+    }
+}

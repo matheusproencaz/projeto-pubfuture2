@@ -10,16 +10,21 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.mpz.pubfutureproject.entities.Contas;
 import com.mpz.pubfutureproject.entities.Despesas;
+import com.mpz.pubfutureproject.repositories.ContasRepository;
+import com.mpz.pubfutureproject.repositories.DespesasRepository;
 import com.mpz.pubfutureproject.services.exceptions.DatabaseException;
 import com.mpz.pubfutureproject.services.exceptions.ResourceNotFoundException;
-import com.mpz.pubfutureproject.repositories.DespesasRepository;
 
 @Service
 public class DespesasService {
 
 	@Autowired
 	private DespesasRepository repository;
+	
+	@Autowired
+	private ContasRepository contasRepository;
 	
 	public List<Despesas> findAll(){
 		return repository.findAll();
@@ -28,6 +33,16 @@ public class DespesasService {
 	public Despesas findById(Long id) {
 		Optional<Despesas> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+	}
+	
+	public List<Despesas> findByConta(Long id){
+		Optional<Contas> conta = contasRepository.findById(id);
+		if(conta == null) {
+			throw new ResourceNotFoundException(id);
+		}
+		
+		List<Despesas> list = repository.findByConta(conta);
+		return list;
 	}
 	
 	public Despesas insert(Despesas obj) {
@@ -60,5 +75,6 @@ public class DespesasService {
 		entity.setDataPagamento(obj.getDataPagamento());
 		entity.setDataPagEsperado(obj.getDataPagEsperado());
 		entity.setTipoDespesa(obj.getTipoDespesa());
+		entity.setNomeUsuario(obj.getNomeUsuario());
 	}
 }

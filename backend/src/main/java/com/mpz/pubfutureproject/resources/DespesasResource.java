@@ -11,46 +11,53 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mpz.pubfutureproject.entities.Despesas;
 import com.mpz.pubfutureproject.services.DespesasService;
 
 @RestController
-@RequestMapping(value = "/despesas")
+//@RequestMapping(value = "/despesas")
 public class DespesasResource {
 
 	@Autowired
 	private DespesasService service;
 	
-	@GetMapping
+	@GetMapping(value = "/despesas")
 	public ResponseEntity<List<Despesas>> findAll(){
 		List<Despesas> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
-	@GetMapping(value = "/{id}")
+	@JsonIgnore
+	@GetMapping(value = "/despesa/{id}")
+	public ResponseEntity<List<Despesas>> findByConta(@PathVariable Long id){
+		List<Despesas> list = service.findByConta(id);
+		return ResponseEntity.ok().body(list);		
+	}
+	
+	@GetMapping(value = "/despesas/{id}")
 	public ResponseEntity<Despesas> findById(@PathVariable Long id){
 		Despesas obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@PostMapping
+	@PostMapping("/despesas")
 	public ResponseEntity<Despesas> insert(@RequestBody Despesas obj){
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdDespesas()).toUri();
 		return ResponseEntity.created(uri).body(obj);
 	}
 	
-	@DeleteMapping(value = "/{id}")
+	@DeleteMapping(value = "/despesas/{id}")
 	public ResponseEntity<Despesas> delete(@PathVariable Long id){
 		service.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
 	
-	@PutMapping(value = "/{id}")
+	@PutMapping(value = "/despesas/{id}")
 	public ResponseEntity<Despesas> update(@PathVariable Long id, @RequestBody Despesas obj){
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);

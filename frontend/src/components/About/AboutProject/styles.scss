@@ -1,0 +1,52 @@
+@import '../../../Estilos/styles.scss';
+
+#AboutProject{
+
+    h2{
+        color: $primaryColor;
+        font-weight: 700;
+        text-shadow: #000 2px 2px 2px;
+        
+        &:before{
+            width:  120px;
+            margin-top: 38px;
+            border-bottom: 2px solid $primaryColor;
+            content: '';
+            position: absolute;
+            box-shadow: #000 2px 2px 2px;
+        }
+    }
+
+    #p-title{
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+    .row{
+        background-color: $gray;
+        border: 3px solid $primaryColor;
+        border-top: 0;
+    }
+
+    #row-dentro{
+        border: 0;
+    }
+
+    margin-bottom: 0;
+    margin-top: 0;
+
+    #container-desafio{
+        background-color: $fourthColor;
+        height: 87px;
+        font-display: flex;
+    }
+
+    img{
+        height: 25px;
+    }
+
+    p, li{
+        color: $secondaryColor;
+        font-size: 24px;
+    }
+}

@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mpz.pubfutureproject.entities.enums.TipoDespesa;
 
 @Entity
@@ -31,8 +32,11 @@ public class Despesas implements Serializable{
 	private Instant dataPagEsperado;
 	private TipoDespesa tipoDespesa;
 	
+	private String nomeUsuario;
+	
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "conta_id")
+	@JoinColumn(name = "conta")
 	private Contas conta;
 	
 	public Despesas() {
@@ -46,6 +50,7 @@ public class Despesas implements Serializable{
 		this.dataPagEsperado = dataPagEsperado;
 		this.tipoDespesa = tipoDespesa;
 		this.conta = conta;
+		this.nomeUsuario = conta.getNomeUsuario();
 	}
 
 	public Long getIdDespesas() {
@@ -94,6 +99,14 @@ public class Despesas implements Serializable{
 
 	public void setConta(Contas conta) {
 		this.conta = conta;
+	}
+
+	public String getNomeUsuario() {
+		return nomeUsuario;
+	}
+
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
 	}
 
 	@Override

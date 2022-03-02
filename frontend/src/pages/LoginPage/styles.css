@@ -2,47 +2,35 @@
   width: 100vw;
   height: 96vh;
   background-color: #f3f3f3;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-
 #loginContainer a {
   margin-top: 0px;
   text-decoration: none;
   font-size: 16px;
   float: end;
 }
-
 #loginContainer .col {
   margin-top: 0;
   margin-bottom: 0;
   margin-left: 5px;
   margin-right: 5px;
 }
-
 #loginContainer .btn {
   background-color: #00719e;
   border: 0;
   width: 100%;
 }
-
 #loginContainer .btn:hover {
   background-color: #003153;
 }
-
 #loginContainer .img-fluid {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   background-color: #00719e;
 }
-
 #loginContainer .container {
   background-color: #FFF;
   border-radius: 20px;
@@ -51,71 +39,19 @@
   margin: 0;
   padding: 0;
 }
-
 #loginContainer .row {
   margin: 0;
   padding: 15px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
-
 #loginContainer .row img {
   height: 150px;
   width: auto;
 }
-
-#loginContainer .label-before, #loginContainer .field input:valid + label::before, #loginContainer .field input:focus + label::before {
+#loginContainer .label-before {
   line-height: 20px;
   font-size: 14px;
   font-weight: 700;
   top: -10px;
   padding: 0;
-}
-
-#loginContainer .field {
-  position: relative;
-  margin-bottom: 15px;
-}
-
-#loginContainer .field label::before {
-  content: attr(title);
-  position: absolute;
-  top: 15px;
-  left: 12.5px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #aaaaaa;
-  -webkit-transition: 200ms all;
-  transition: 200ms all;
-}
-
-#loginContainer .field input {
-  width: 100%;
-  line-height: 40px;
-  padding: 0;
-  margin-bottom: 0;
-  background-color: transparent;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  font-size: 14px;
-  color: #aaaaaa;
-  border: 0;
-  border-bottom: 2px solid #aaaaaa;
-  outline: 0;
-  -webkit-transition: border-color 0.2s;
-  transition: border-color 0.2s;
-}
-
-#loginContainer .field input:focus {
-  border-bottom: 2px solid #00719e;
-}
-
-#loginContainer .field input:valid + label::before {
-  content: attr(data-title);
-}
-
-#loginContainer .field input:focus + label::before {
-  color: #00719e;
-}
-/*# sourceMappingURL=styles.css.map */
+}/*# sourceMappingURL=styles.css.map */

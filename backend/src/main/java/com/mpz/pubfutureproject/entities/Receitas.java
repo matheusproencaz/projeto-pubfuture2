@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mpz.pubfutureproject.entities.enums.TipoReceita;
 
 @Entity
@@ -32,8 +33,11 @@ public class Receitas implements Serializable{
 	private String descricao;
 	private TipoReceita tipoReceita;
 	
+	private String nomeUsuario;
+	
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "conta_id")
+	@JoinColumn(name = "conta")
 	private Contas conta;
 	
 	public Receitas() {
@@ -49,6 +53,7 @@ public class Receitas implements Serializable{
 		this.descricao = descricao;
 		this.tipoReceita = tipoReceita;
 		this.conta = conta;
+		this.nomeUsuario = conta.getNomeUsuario();
 	}
 
 	public Long getIdReceita() {
@@ -105,6 +110,14 @@ public class Receitas implements Serializable{
 
 	public void setConta(Contas conta) {
 		this.conta = conta;
+	}
+	
+	public String getNomeUsuario() {
+		return nomeUsuario;
+	}
+
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,12 +33,11 @@ public class Contas implements Serializable{
 	private Integer tipoConta;
 	private Integer instituicaoFin;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "conta",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "conta",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	//Com o cascade all: quando apagar uma conta, irá apagar todas as receitas também.
 	private Set<Receitas> receitas = new HashSet<>();
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "conta",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "conta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Despesas> despesas = new HashSet<>();
 	
 	public Contas() {
