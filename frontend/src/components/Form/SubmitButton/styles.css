@@ -1,0 +1,19 @@
+.btns {
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-around;
+}
+.btns .btn {
+  display: flex;
+  align-items: center;
+  color: #FFF;
+  background-color: #00719e;
+  transition: 200ms;
+}
+.btns .btn svg {
+  margin-right: 0.5em;
+}
+.btns .btn:hover {
+  color: #003153;
+  background-color: #6befd2;
+}/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,61 @@
+@import "../../../Estilos/styles.scss";
+
+#despesa-card-container{
+
+    width: 280px;
+    border-radius: 5%;
+    margin-left: 1em;
+    background-color: $gray;
+    box-shadow: 4px 4px 4px $gray4, -4px -4px 7px $white;
+
+    .title-card{
+        padding-top: .5em;
+        //border-bottom: 2px solid $primaryColor;
+        display: flex;
+        justify-content: center;
+    }
+
+    .content-card{
+        padding-left: .5em;
+        padding-right: .5em;
+    }
+
+    .btns{
+        padding: .5em;
+        display: flex;
+        justify-content: space-around;
+        //border-top: 2px solid $primaryColor;
+
+        .btn{
+            display: flex;
+            align-items: center;
+
+            svg{
+                margin-right: .5em;
+            }
+            color: $white;
+            background-color: $secondaryColor;
+            transition: 200ms;
+
+            &:hover{
+                color: $fourthColor;
+                background-color: $primaryColor;
+            }
+
+        }
+    }    
+
+    h3{
+        color: $fourthColor;
+    }
+
+    span{
+        font-weight: bold;
+        color: $fourthColor;
+    }
+
+    p{
+        color: $secondaryColor;
+    }
+
+}

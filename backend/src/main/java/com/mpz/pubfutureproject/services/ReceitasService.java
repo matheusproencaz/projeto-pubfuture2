@@ -11,9 +11,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.mpz.pubfutureproject.entities.Receitas;
+import com.mpz.pubfutureproject.repositories.ReceitasRepository;
 import com.mpz.pubfutureproject.services.exceptions.DatabaseException;
 import com.mpz.pubfutureproject.services.exceptions.ResourceNotFoundException;
-import com.mpz.pubfutureproject.repositories.ReceitasRepository;
 
 @Service
 public class ReceitasService {
@@ -22,12 +22,11 @@ public class ReceitasService {
 	private ReceitasRepository repository;
 	
 	public List<Receitas> findAll(){
-		return repository.findAll();
+		return repository.findAll(); 
 	}
 
 	public Receitas findById(Long id) {
-		Optional<Receitas> obj = repository.findById(id);
-		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public Receitas insert(Receitas obj) {
@@ -44,23 +43,21 @@ public class ReceitasService {
 		}
 	}
 	
-	public Receitas update(Long id, Receitas obj) {
+	public Receitas update(Receitas obj) {
 		try {
-			@SuppressWarnings("deprecation")
-			Receitas entity = repository.getOne(id);
-			updateData(entity, obj);
-			return repository.save(entity);
+			Optional<Receitas> newObj = repository.findById(obj.getIdReceita());
+			updateData(newObj.orElseThrow(), obj);
+			return repository.save(newObj.orElseThrow());
 		}catch(EntityNotFoundException e) {
-			throw new ResourceNotFoundException(id);
+			throw new ResourceNotFoundException(obj.getIdReceita());
 		}
 	}
 
-	private void updateData(Receitas entity, Receitas obj) {
-		entity.setValor(obj.getValor());
-		entity.setDataRecebimento(obj.getDataRecebimento());
-		entity.setDataRecEsperado(obj.getDataRecEsperado());
-		entity.setDescricao(obj.getDescricao());
-		entity.setTipoReceita(obj.getTipoReceita());
-		entity.setNomeUsuario(obj.getNomeUsuario());
+	private void updateData(Receitas newObj, Receitas obj) {
+		newObj.setValor(obj.getValor());
+		newObj.setDataRecebimento(obj.getDataRecebimento());
+		newObj.setDataRecEsperado(obj.getDataRecEsperado());
+		newObj.setDescricao(obj.getDescricao());
+		newObj.setTipoReceita(obj.getTipoReceita());
 	}
 }

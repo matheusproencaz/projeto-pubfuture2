@@ -7,8 +7,17 @@
         height: 100%;
         width: 100%;
         
-        background-color: $thirdColor;
+        background-color: $gray;
     }
 
+    .dados-despesas{
+        display: flex;
+        justify-content: flex-start;
+    }
 
+    .dados-receitas{
+        display: flex;
+        justify-content: flex-start;
+    }
+    
 }

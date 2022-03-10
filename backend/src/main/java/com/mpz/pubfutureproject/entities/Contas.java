@@ -6,8 +6,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,23 +26,27 @@ public class Contas implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idConta;
+	
+	@Column(unique=true)
 	private String nomeUsuario;
 	private String senha;
 	private Double saldo;
 	
 	private Integer tipoConta;
 	private Integer instituicaoFin;
-	
-	@OneToMany(mappedBy = "conta",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
 	//Com o cascade all: quando apagar uma conta, irá apagar todas as receitas também.
+	@JsonIgnore
+	@OneToMany(mappedBy = "conta",cascade = CascadeType.ALL)
 	private Set<Receitas> receitas = new HashSet<>();
 	
-	@OneToMany(mappedBy = "conta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
+	@OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
 	private Set<Despesas> despesas = new HashSet<>();
 	
 	public Contas() {
 	}
-
+ 
 	public Contas(Long idConta, String nomeUsuario, String senha, Double saldo, TipoConta tipoConta,
 			InstituicaoFinanceira instituicaoFin) {
 		this.idConta = idConta;
@@ -109,10 +113,18 @@ public class Contas implements Serializable{
 		return receitas;
 	}
 
+	public void addReceita(Receitas receita) {
+		this.receitas.add(receita);
+	}
+	
 	public Set<Despesas> getDespesas() {
 		return despesas;
 	}
 
+	public void addDespesa(Despesas despesa) {
+		this.despesas.add(despesa);
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(idConta, nomeUsuario);

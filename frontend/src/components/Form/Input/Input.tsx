@@ -11,9 +11,9 @@ function Input({ type, text, name, placeholder, handleOnChange, value }:any){
             required
             placeholder={placeholder}
             onChange={handleOnChange}
-            value={value}
+            defaultValue={value}
             />
-            <label className="label" htmlFor={name} title={name} data-title={name}></label>
+            <label className="label" htmlFor={text} title={text} data-title={text}></label>
         </div>
     );
 }

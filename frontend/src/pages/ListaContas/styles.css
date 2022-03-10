@@ -4,5 +4,13 @@
 #listaContas .content {
   height: 100%;
   width: 100%;
-  background-color: #eceeb3;
+  background-color: #f3f3f3;
+}
+#listaContas .dados-despesas {
+  display: flex;
+  justify-content: flex-start;
+}
+#listaContas .dados-receitas {
+  display: flex;
+  justify-content: flex-start;
 }/*# sourceMappingURL=styles.css.map */

@@ -8,12 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mpz.pubfutureproject.entities.enums.TipoDespesa;
 
 @Entity
@@ -30,27 +28,32 @@ public class Despesas implements Serializable{
 	private Instant dataPagamento;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant dataPagEsperado;
-	private TipoDespesa tipoDespesa;
 	
-	private String nomeUsuario;
+	private Integer tipoDespesa;
 	
-	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "conta")
 	private Contas conta;
 	
 	public Despesas() {
 	}
 
 	public Despesas(Long idDespesas, Double valor, Instant dataPagamento, Instant dataPagEsperado,
+			TipoDespesa tipoDespesa) {
+		this.idDespesas = idDespesas;
+		this.valor = valor;
+		this.dataPagamento = dataPagamento;
+		this.dataPagEsperado = dataPagEsperado;
+		setTipoDespesa(tipoDespesa);
+	}
+	
+	public Despesas(Long idDespesas, Double valor, Instant dataPagamento, Instant dataPagEsperado,
 			TipoDespesa tipoDespesa, Contas conta) {
 		this.idDespesas = idDespesas;
 		this.valor = valor;
 		this.dataPagamento = dataPagamento;
 		this.dataPagEsperado = dataPagEsperado;
-		this.tipoDespesa = tipoDespesa;
+		setTipoDespesa(tipoDespesa);
 		this.conta = conta;
-		this.nomeUsuario = conta.getNomeUsuario();
 	}
 
 	public Long getIdDespesas() {
@@ -86,11 +89,13 @@ public class Despesas implements Serializable{
 	}
 
 	public TipoDespesa getTipoDespesa() {
-		return tipoDespesa;
+		return TipoDespesa.valueOf(tipoDespesa);
 	}
 
 	public void setTipoDespesa(TipoDespesa tipoDespesa) {
-		this.tipoDespesa = tipoDespesa;
+		if(tipoDespesa != null) {
+			this.tipoDespesa = tipoDespesa.getCode();
+		}
 	}
 
 	public Contas getConta() {
@@ -99,14 +104,6 @@ public class Despesas implements Serializable{
 
 	public void setConta(Contas conta) {
 		this.conta = conta;
-	}
-
-	public String getNomeUsuario() {
-		return nomeUsuario;
-	}
-
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
 	}
 
 	@Override

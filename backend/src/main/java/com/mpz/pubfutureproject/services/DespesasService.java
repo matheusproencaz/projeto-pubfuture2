@@ -10,9 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.mpz.pubfutureproject.entities.Contas;
 import com.mpz.pubfutureproject.entities.Despesas;
-import com.mpz.pubfutureproject.repositories.ContasRepository;
 import com.mpz.pubfutureproject.repositories.DespesasRepository;
 import com.mpz.pubfutureproject.services.exceptions.DatabaseException;
 import com.mpz.pubfutureproject.services.exceptions.ResourceNotFoundException;
@@ -23,27 +21,25 @@ public class DespesasService {
 	@Autowired
 	private DespesasRepository repository;
 	
-	@Autowired
-	private ContasRepository contasRepository;
+//	@Autowired
+//	private ContasRepository contasRepository;
 	
 	public List<Despesas> findAll(){
 		return repository.findAll();
 	}
 
 	public Despesas findById(Long id) {
-		Optional<Despesas> obj = repository.findById(id);
-		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
-	public List<Despesas> findByConta(Long id){
-		Optional<Contas> conta = contasRepository.findById(id);
-		if(conta == null) {
-			throw new ResourceNotFoundException(id);
-		}
-		
-		List<Despesas> list = repository.findByConta(conta);
-		return list;
-	}
+//	public List<Despesas> findByConta(Long id){
+//		Optional<Contas> conta = contasRepository.findById(id);
+//		if(conta == null) {
+//			throw new ResourceNotFoundException(id);
+//		}
+//		List<Despesas> list = repository.findByConta(conta);
+//		return list;
+//	}
 	
 	public Despesas insert(Despesas obj) {
 		return repository.save(obj);
@@ -59,14 +55,13 @@ public class DespesasService {
 		}
 	}
 	
-	public Despesas update(Long id, Despesas obj) {
+	public Despesas update(Despesas obj) {
 		try {
-			@SuppressWarnings("deprecation")
-			Despesas entity = repository.getOne(id);
-			updateData(entity, obj);
-			return repository.save(entity);
+			Optional<Despesas> newObj = repository.findById(obj.getIdDespesas());
+			updateData(newObj.orElseThrow(), obj);
+			return repository.save(newObj.orElseThrow());
 		}catch(EntityNotFoundException e) {
-			throw new ResourceNotFoundException(id);
+			throw new ResourceNotFoundException(obj.getIdDespesas());
 		}
 	}
 
@@ -75,6 +70,19 @@ public class DespesasService {
 		entity.setDataPagamento(obj.getDataPagamento());
 		entity.setDataPagEsperado(obj.getDataPagEsperado());
 		entity.setTipoDespesa(obj.getTipoDespesa());
-		entity.setNomeUsuario(obj.getNomeUsuario());
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,6 +2,7 @@ package com.mpz.pubfutureproject.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -9,79 +10,101 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.mpz.pubfutureproject.dto.ContasDTO;
+import com.mpz.pubfutureproject.dto.SenhaDTO;
 import com.mpz.pubfutureproject.entities.Contas;
 import com.mpz.pubfutureproject.repositories.ContasRepository;
 import com.mpz.pubfutureproject.services.exceptions.DatabaseException;
 import com.mpz.pubfutureproject.services.exceptions.ResourceNotFoundException;
+import com.mpz.pubfutureproject.services.exceptions.ResourcesAlreadyExistsException;
+import com.mpz.pubfutureproject.services.exceptions.WrongPasswordException;
 
 @Service
 public class ContasService {
 
 	@Autowired
 	private ContasRepository repository;
-	
-	public List<Contas> findAll(){
-		return repository.findAll();
+
+	@Transactional(readOnly = true)
+	public List<ContasDTO> findAll() {
+		List<Contas> list = repository.findContasDespesasReceitas();
+		return list.stream().map(x -> new ContasDTO(x)).collect(Collectors.toList());
 	}
 
-	public Contas findById(Long id) {
+	@Transactional(readOnly = true)
+	public ContasDTO findById(Long id) {
 		Optional<Contas> obj = repository.findById(id);
-		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+		return new ContasDTO(obj.orElseThrow(() -> new ResourceNotFoundException(id)));
 	}
-	
-	public Contas findByNomeUsuario(String nomeUsuario) {
+
+	@Transactional(readOnly = true)
+	public ContasDTO findByNomeUsuario(String nomeUsuario) {
 		Contas obj = repository.findByNomeUsuario(nomeUsuario);
-		if(obj == null) {
+		if (obj == null) {
 			throw new ResourceNotFoundException(nomeUsuario);
 		}
-		return obj;
+		return new ContasDTO(obj);
 	}
-	
+
+	@Transactional
 	public Contas insert(Contas obj) {
-		return repository.save(obj);
+		try {
+			return repository.save(obj);
+		} catch (DataIntegrityViolationException e) {
+			throw new ResourcesAlreadyExistsException();
+		}
 	}
-	
+
 	public void deleteById(Long id) {
 		try {
 			repository.deleteById(id);
-		}catch(EmptyResultDataAccessException e) {
+		} catch (EmptyResultDataAccessException e) {
 			throw new ResourceNotFoundException(id);
-		}catch(DataIntegrityViolationException e) {
-		throw new DatabaseException(e.getMessage());
+		} catch (DataIntegrityViolationException e) {
+			throw new DatabaseException(e.getMessage());
 		}
 	}
-	
-	public Contas update(Long id, Contas obj) {
+
+	public Contas update(Contas obj) {
 		try {
-			@SuppressWarnings("deprecation")
-			Contas entity = repository.getOne(id);
-			updateData(entity, obj);
-			return repository.save(entity);
-		}catch(EntityNotFoundException e) {
-			throw new ResourceNotFoundException(id);
+			Optional<Contas> newObj = repository.findById(obj.getIdConta());
+			updateData(newObj.orElseThrow(), obj);
+			return repository.save(newObj.orElseThrow());
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(obj.getIdConta());
 		}
 	}
-	
-	public Contas updateSenha(Long id, Contas obj) {
+
+	public Contas updateSenha(Long id, SenhaDTO senha) {
 		try {
-			@SuppressWarnings("deprecation")
-			Contas entity = repository.getOne(id);
-			updateDataSenha(entity, obj);
-			return repository.save(entity);
-		}catch(EntityNotFoundException e) {
+			Optional<Contas> conta = repository.findById(id);
+			if (conta.orElseThrow().getSenha().equals(senha.getSenhaAntiga())) {
+				conta.orElseThrow().setSenha(senha.getSenhaNova());
+				return repository.save(conta.orElseThrow());
+			} else {
+				throw new WrongPasswordException(""+senha.getSenhaAntiga()+" "+conta.orElseThrow().getSenha());
+			}
+		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
 		}
 	}
 
-	private void updateData(Contas entity, Contas obj) {
-		entity.setNomeUsuario(obj.getNomeUsuario());
-		entity.setSaldo(obj.getSaldo());
-		entity.setTipoConta(obj.getTipoConta());
-		entity.setInstituicaoFin(obj.getInstituicaoFin());
+	private void updateData(Contas newObj, Contas obj) {
+		newObj.setNomeUsuario(obj.getNomeUsuario());
+		newObj.setSaldo(obj.getSaldo());
+		newObj.setTipoConta(obj.getTipoConta());
+		newObj.setInstituicaoFin(obj.getInstituicaoFin());
 	}
-	
-	private void updateDataSenha(Contas entity, Contas obj) {
-		entity.setNomeUsuario(obj.getSenha());
+
+	public Contas fromDTO(ContasDTO objDTO) {
+		return new Contas(
+				objDTO.getIdConta(), 
+				objDTO.getNomeUsuario(), 
+				objDTO.getSenha(), 
+				objDTO.getSaldo(),
+				objDTO.getTipoConta(), 
+				objDTO.getInstituicaoFin());
 	}
 }

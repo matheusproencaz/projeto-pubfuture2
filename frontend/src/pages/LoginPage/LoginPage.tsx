@@ -61,12 +61,14 @@ function LoginPage() {
                     <div className="row">
                         <Input
                             name='Usuário'
+                            text='Usuário'
                             id='username'
                             type='text'
                             handleOnChange={handleOnChange}
                         />
                         <Input
                             name='Senha'
+                            text='Senha'
                             id='password'
                             type='password'
                             handleOnChange={handleOnChange}

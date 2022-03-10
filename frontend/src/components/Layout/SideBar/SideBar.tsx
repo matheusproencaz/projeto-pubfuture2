@@ -40,9 +40,7 @@ function SideBar( {name}: any){
                     <strong>{name}</strong>
                 </a>
                 <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                    <li><a className="dropdown-item" href="//#">New project...</a></li>
-                    <li><a className="dropdown-item" href="//#">Settings</a></li>
-                    <li><a className="dropdown-item" href="/#">Profile</a></li>
+                    <li><a className="dropdown-item" href="//#">Editar Perfil</a></li>
                     <li></li>
                     <li><a className="dropdown-item" href="/#">Sign out</a></li>
                 </ul>

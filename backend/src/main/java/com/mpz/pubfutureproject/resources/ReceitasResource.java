@@ -38,10 +38,10 @@ public class ReceitasResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Receitas> insert(@RequestBody Receitas obj){
+	public ResponseEntity<Void> insert(@RequestBody Receitas obj){
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdReceita()).toUri();
-		return ResponseEntity.created(uri).body(obj);
+		return ResponseEntity.created(uri).build();
 	}
 	
 	@DeleteMapping(value = "/{id}")
@@ -52,7 +52,8 @@ public class ReceitasResource {
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Receitas> update(@PathVariable Long id, @RequestBody Receitas obj){
-		obj = service.update(id, obj);
+		obj.setIdReceita(id);
+		obj = service.update(obj);
 		return ResponseEntity.ok().body(obj);
 	}
 }

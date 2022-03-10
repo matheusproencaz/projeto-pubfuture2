@@ -8,19 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mpz.pubfutureproject.entities.enums.TipoReceita;
 
 @Entity
 @Table(name = "tb_receitas")
 public class Receitas implements Serializable{
 	private static final long serialVersionUID = 1L;
-
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,18 +28,27 @@ public class Receitas implements Serializable{
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant dataRecEsperado;
 	private String descricao;
-	private TipoReceita tipoReceita;
+	private Integer tipoReceita;
 	
-	private String nomeUsuario;
+	//private Integer status;
 	
-	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "conta")
 	private Contas conta;
 	
 	public Receitas() {
 	}
-
+	
+	public Receitas(Long idReceita, Double valor, Instant dataRecebimento, Instant dataRecEsperado, String descricao,
+			TipoReceita tipoReceita) {
+		super();
+		this.idReceita = idReceita;
+		this.valor = valor;
+		this.dataRecebimento = dataRecebimento;
+		this.dataRecEsperado = dataRecEsperado;
+		this.descricao = descricao;
+		setTipoReceita(tipoReceita);
+	}
+	
 	public Receitas(Long idReceita, Double valor, Instant dataRecebimento, Instant dataRecEsperado, String descricao,
 			TipoReceita tipoReceita, Contas conta) {
 		super();
@@ -51,11 +57,10 @@ public class Receitas implements Serializable{
 		this.dataRecebimento = dataRecebimento;
 		this.dataRecEsperado = dataRecEsperado;
 		this.descricao = descricao;
-		this.tipoReceita = tipoReceita;
+		setTipoReceita(tipoReceita);
 		this.conta = conta;
-		this.nomeUsuario = conta.getNomeUsuario();
 	}
-
+	
 	public Long getIdReceita() {
 		return idReceita;
 	}
@@ -97,12 +102,24 @@ public class Receitas implements Serializable{
 	}
 
 	public TipoReceita getTipoReceita() {
-		return tipoReceita;
+		return TipoReceita.valueOf(tipoReceita);
 	}
 
 	public void setTipoReceita(TipoReceita tipoReceita) {
-		this.tipoReceita = tipoReceita;
+		if(tipoReceita != null) {
+			this.tipoReceita = tipoReceita.getCode();
+		}
 	}
+
+//	public Status getStatus() {
+//		return Status.valueOf(status);
+//	}
+//
+//	public void setStatus(Status status) {
+//		if(status != null) {
+//			this.status = status.getCode();
+//		}
+//	}
 
 	public Contas getConta() {
 		return conta;
@@ -110,14 +127,6 @@ public class Receitas implements Serializable{
 
 	public void setConta(Contas conta) {
 		this.conta = conta;
-	}
-	
-	public String getNomeUsuario() {
-		return nomeUsuario;
-	}
-
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
 	}
 
 	@Override

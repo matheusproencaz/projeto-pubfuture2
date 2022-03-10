@@ -43,7 +43,7 @@ public class TestConfig implements CommandLineRunner{
 		Contas c3 = new Contas(null, "Richard Tribess", "1234567", 500.58, TipoConta.Poupança, InstituicaoFinanceira.Nunbank);
 		Contas c4 = new Contas(null, "Paula Faria", "1234567", 30000.00, TipoConta.Carteira, InstituicaoFinanceira.BancoInter);		
 		
-		Despesas des1 = new Despesas(null, 30.00, Instant.parse("2022-01-20T19:53:07Z"), Instant.parse("2022-01-20T20:40:00Z"), TipoDespesa.Alimentação, c1);
+		Despesas des1 = new Despesas(null, 30.00, Instant.parse("2022-01-20T19:53:07Z"), Instant.parse("2022-01-20T20:40:00Z"), TipoDespesa.Alimentação,c1);
 		Despesas des2 = new Despesas(null, 200.00, Instant.parse("2022-01-20T19:53:07Z"), Instant.parse("2022-01-20T20:40:00Z"), TipoDespesa.Outros, c1);
 		Despesas des3 = new Despesas(null, 500.00, Instant.parse("2022-01-20T19:53:07Z"), Instant.parse("2022-01-20T20:40:00Z"), TipoDespesa.Moradia, c2);
 		Despesas des4 = new Despesas(null, 945.00, Instant.parse("2022-01-20T19:53:07Z"), Instant.parse("2022-01-20T20:40:00Z"), TipoDespesa.Outros, c3);
